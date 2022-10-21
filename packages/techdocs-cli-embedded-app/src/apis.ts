@@ -36,6 +36,7 @@ import {
   TechDocsStorageApi,
   techdocsStorageApiRef,
 } from '@backstage/plugin-techdocs-react';
+import { MockSearchApi, searchApiRef } from '@backstage/plugin-search-react';
 
 // TODO: Export type from plugin-techdocs and import this here
 // import { ParsedEntityId } from '@backstage/plugin-techdocs'
@@ -186,5 +187,10 @@ export const apis: AnyApiFactory[] = [
     api: scmIntegrationsApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
+  }),
+  createApiFactory({
+    api: searchApiRef,
+    deps: {},
+    factory: ({}) => new MockSearchApi(),
   }),
 ];
